@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MenuActivity"><!--#9e1ae6-->
+
+    <Button
+        android:id="@+id/info_menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:text="Al's Info"
+        android:background="@drawable/menu_button_curved"
+        android:textColor="#FFFFFF"
+        android:onClick="goto_alinfo"/>
+    <!--app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"-->
+
+    <LinearLayout
+        android:id="@+id/parent_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/heading_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-60dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/almate_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/almate_name"
+                android:textColor="#FF0088"
+                android:textSize="50sp" />
+
+            <TextView
+                android:id="@+id/almate_tagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/almate_tagline"
+                android:textAlignment="viewEnd"
+                android:textColor="#FF0088" />
+
+        </LinearLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/menu_button_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+            <Button
+                android:id="@+id/medicines_menu_button"
+                style="@style/menu_buttons"
+                android:onClick="goto_medicinesview"
+                android:text="Medicines" />
+
+            <Button
+                android:id="@+id/events_menu_button"
+                style="@style/menu_buttons"
+                android:onClick="goto_eventsview"
+                android:text="Events"
+                app:layout_constraintLeft_toRightOf="@id/medicines_menu_button" />
+
+            <Button
+                android:id="@+id/places_menu_button"
+                style="@style/menu_buttons"
+                android:onClick="goto_placesview"
+                android:text="Places"
+                app:layout_constraintTop_toBottomOf="@id/medicines_menu_button" />
+
+            <Button
+                android:id="@+id/people_menu_button"
+                style="@style/menu_buttons"
+                android:onClick="goto_peopleview"
+                android:text="People &amp; Details"
+                app:layout_constraintLeft_toRightOf="@id/places_menu_button"
+                app:layout_constraintTop_toBottomOf="@id/events_menu_button" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
