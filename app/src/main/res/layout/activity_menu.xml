@@ -70,7 +70,7 @@
                 android:id="@+id/events_menu_button"
                 style="@style/menu_buttons"
                 android:onClick="goto_eventsview"
-                android:text="Events"
+                android:text="SOS"
                 app:layout_constraintLeft_toRightOf="@id/medicines_menu_button" />
 
             <Button
@@ -84,7 +84,7 @@
                 android:id="@+id/people_menu_button"
                 style="@style/menu_buttons"
                 android:onClick="goto_peopleview"
-                android:text="People &amp; Details"
+                android:text="People &amp;\n Details"
                 app:layout_constraintLeft_toRightOf="@id/places_menu_button"
                 app:layout_constraintTop_toBottomOf="@id/events_menu_button" />
 

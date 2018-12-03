@@ -22,7 +22,6 @@ public class MedicinesAdd extends AppCompatActivity {
     Button setTime,addMed;
     TextView textTime;
     private SQLiteDatabase mDatabase;
-    private MedicineAdapter mAdapter;
     private EditText mEditMedName;
 
     @Override
@@ -91,7 +90,7 @@ public class MedicinesAdd extends AppCompatActivity {
 
         long result = mDatabase.insert(MedicineContract.MedicineEntry.TABLE_NAME, null, cv);
         if(result == -1) {
-            Toast.makeText(MedicinesAdd.this, "There was some error", Toast.LENGTH_LONG).show();
+            Toast.makeText(MedicinesAdd.this, "There was some error :(", Toast.LENGTH_LONG).show();
         }
         else {
             Toast.makeText(MedicinesAdd.this, "Medicine Added!", Toast.LENGTH_LONG).show();

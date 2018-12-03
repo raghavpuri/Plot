@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alzheimersmate.almate">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity android:name=".MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,29 +28,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".medicine_view"
             android:label="View your Medicines"
             android:parentActivityName=".MenuActivity" />
+
         <activity
             android:name=".places_view"
             android:label="View your Saved Places"
             android:parentActivityName=".MenuActivity" />
+
         <activity
             android:name=".events_view"
             android:label="View your Events"
             android:parentActivityName=".MenuActivity" />
+
         <activity
             android:name=".people_view"
             android:label="View your Saved Profiles"
             android:parentActivityName=".MenuActivity" />
+
         <activity
             android:name=".alz_info"
-            android:label="View your Saved Profiles"
+            android:label="Information Section"
             android:parentActivityName=".MenuActivity" />
-        <activity android:name=".MedicinesAdd"
+
+        <activity
+            android:name=".MedicinesAdd"
             android:label="Add a Medicine"
-            android:parentActivityName=".medicine_view"></activity>
+            android:parentActivityName=".medicine_view" />
+
+        <activity
+            android:name=".PlacesAdd"
+            android:label="Save Current Place"
+            android:parentActivityName=".places_view" />
+
     </application>
 
 </manifest>

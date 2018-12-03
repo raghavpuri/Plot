@@ -13,11 +13,12 @@
     </style>
 
     <style name="menu_buttons">
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_width">125dp</item>
+        <item name="android:layout_height">125dp</item>
         <item name="android:background">@drawable/menu_button_curved</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:layout_margin">8dp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="material_button">
