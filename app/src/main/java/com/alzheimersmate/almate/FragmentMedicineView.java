@@ -1,34 +1,38 @@
 package com.alzheimersmate.almate;
 
-import android.app.ActivityOptions;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.view.ViewGroup;
 
-public class places_view extends AppCompatActivity {
+public class FragmentMedicineView extends Fragment {
     private SQLiteDatabase mDatabase;
-    private PlacesAdapter mAdapter;
+    private MedicineAdapter mAdapter;
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_medicine_view, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_places_view);
-        placesDBHelper dbHelper = new placesDBHelper(this);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
         mDatabase = dbHelper.getWritableDatabase();
 
-        RecyclerView recyclerView = findViewById(R.id.place_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new PlacesAdapter(this, getAllItems());
+        RecyclerView recyclerView = getView().findViewById(R.id.med_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAdapter = new MedicineAdapter(getActivity(), getAllItems());
         recyclerView.setAdapter(mAdapter);
         mAdapter.swapCursor(getAllItems());
 
@@ -42,18 +46,11 @@ public class places_view extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
-                TextView checkhomename = (TextView) viewHolder.itemView.findViewById(R.id.textview_placename_item);
-                /*if(checkhomename.getText().equals("HOME")) {
-                    mAdapter.swapCursor(getAllItems());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(places_view.this);
-                    builder.setMessage("You cannot delete HOME").setCancelable(true).show();
-                }
-                else{}*/
-                if(true) {
+                if(DatabaseUtils.queryNumEntries(mDatabase, MedicineContract.MedicineEntry.TABLE_NAME)!=1) {
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            switch (which) {
+                            switch (which){
                                 case DialogInterface.BUTTON_POSITIVE:
                                     removeItem((long) viewHolder.itemView.getTag());
                                     break;
@@ -64,37 +61,36 @@ public class places_view extends AppCompatActivity {
                             }
                         }
                     };
-                    AlertDialog.Builder builder = new AlertDialog.Builder(places_view.this);
-                    builder.setMessage("Do you want to delete this saved place?").setPositiveButton("Yes", dialogClickListener)
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("Do you want to delete this medicine schedule?").setPositiveButton("Yes", dialogClickListener)
                             .setNegativeButton("No", dialogClickListener).show();
+                }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("You must have at least one medicine in your schedule. Add a medicine as \'None\' and delete this one if you don't want any medicine schedules.").show();
+                    mAdapter.swapCursor(getAllItems());
                 }
             }
         }).attachToRecyclerView(recyclerView);
     }
 
     private void removeItem(long id) {
-        mDatabase.delete(PlacesContract.PlacesEntry.TABLE_NAME,
-                PlacesContract.PlacesEntry.COLUMN_ID + "=" + id, null);
+        mDatabase.delete(MedicineContract.MedicineEntry.TABLE_NAME,
+                MedicineContract.MedicineEntry.COLUMN_ID + "=" + id, null);
         mAdapter.swapCursor(getAllItems());
     }
 
     private Cursor getAllItems() {
         return mDatabase.query(
-                PlacesContract.PlacesEntry.TABLE_NAME,
+                MedicineContract.MedicineEntry.TABLE_NAME,
                 null,
                 null,
                 null,
                 null,
                 null,
-                PlacesContract.PlacesEntry.COLUMN_PLACE_NAME + " DESC"
+                MedicineContract.MedicineEntry.COLUMN_ID + " ASC"
         );
     }
-
-    public void goto_placesadd(View view) {
-        Intent intent = new Intent(places_view.this, PlacesAdd.class);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-    }
-
-
 
 }

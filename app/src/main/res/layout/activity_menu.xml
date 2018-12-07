@@ -1,94 +1,372 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".MenuActivity"><!--#9e1ae6-->
-
-    <Button
-        android:id="@+id/info_menu_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
-        android:text="Al's Info"
-        android:background="@drawable/menu_button_curved"
-        android:textColor="#FFFFFF"
-        android:onClick="goto_alinfo"/>
-    <!--app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"-->
+    android:background="#FFFFFF">
 
     <LinearLayout
-        android:id="@+id/parent_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/heading_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-60dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/almate_heading"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/almate_name"
-                android:textColor="#FF0088"
-                android:textSize="50sp" />
-
-            <TextView
-                android:id="@+id/almate_tagline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/almate_tagline"
-                android:textAlignment="viewEnd"
-                android:textColor="#FF0088" />
-
-        </LinearLayout>
-
         <android.support.constraint.ConstraintLayout
-            android:id="@+id/menu_button_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"> <!--android:layout_marginTop="20dp"-->
 
-            <Button
-                android:id="@+id/medicines_menu_button"
-                style="@style/menu_buttons"
-                android:onClick="goto_medicinesview"
-                android:text="Medicines" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/events_menu_button"
-                style="@style/menu_buttons"
-                android:onClick="goto_eventsview"
-                android:text="SOS"
-                app:layout_constraintLeft_toRightOf="@id/medicines_menu_button" />
+                <ImageView
+                    android:layout_width="256.9dp"
+                    android:layout_height="251.25dp"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="10dp"
+                    android:rotation="1"
+                    android:src="@drawable/geometry" />
 
-            <Button
-                android:id="@+id/places_menu_button"
-                style="@style/menu_buttons"
-                android:onClick="goto_placesview"
-                android:text="Places"
-                app:layout_constraintTop_toBottomOf="@id/medicines_menu_button" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/people_menu_button"
-                style="@style/menu_buttons"
-                android:onClick="goto_peopleview"
-                android:text="People &amp;\n Details"
-                app:layout_constraintLeft_toRightOf="@id/places_menu_button"
-                app:layout_constraintTop_toBottomOf="@id/events_menu_button" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="238dp"
+                android:orientation="horizontal">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="80dp">
+
+                    <com.github.siyamed.shapeimageview.HexagonImageView
+                        android:layout_width="165dp"
+                        android:layout_height="155dp"
+                        android:src="@drawable/anuragpicture"
+                        android:id="@+id/menuuserdisplaypic"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:siShape="@raw/hexagontilt" />
+
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
 
         </android.support.constraint.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/user_name_menu_act"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Hey User!"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="I hope you're having a nice day! :p"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:paddingTop="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#FFF"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/menu_med_1_med_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paracetamol"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/menu_med_1_med_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In 2 Hours"
+                    android:textColor="#0995ff"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="8dp">
+
+                    <com.github.siyamed.shapeimageview.CircularImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/doc1" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="Dr.Patel"
+                        android:textColor="#0995ff" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FFF"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/menu_med_2_med_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crocin"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/menu_med_2_med_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In 4 Hours"
+                    android:textColor="#0995ff"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="8dp">
+
+                    <com.github.siyamed.shapeimageview.CircularImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/doc2" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:text="Dr.Russell"
+                        android:textColor="#0995ff" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="#FFF"
+                    android:clickable="true"
+                    android:elevation="5dp"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:onClick="goto_medicinesview"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp"
+                        android:src="@drawable/redpill" />
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingLeft="10dp">
+
+                        <TextView
+                            android:id="@+id/textview_menu_medicines_sub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:text="View and Add"
+                            android:textColor="#000"
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:layout_editor_absoluteX="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Medicines"
+                            android:textColor="#000"
+                            android:textSize="24sp"
+                            app:layout_constraintTop_toBottomOf="@id/textview_menu_medicines_sub" />
+
+                        <ImageView
+                            android:layout_width="76.5dp"
+                            android:layout_height="38.5dp"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/redmaterial"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toRightOf="parent" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FFF"
+                    android:clickable="true"
+                    android:elevation="5dp"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:onClick="goto_peopleview"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="5dp"
+                        android:src="@drawable/contact" />
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingLeft="10dp">
+
+                        <ImageView
+                            android:layout_width="64.5dp"
+                            android:layout_height="30dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/bluematerial"
+                            app:layout_constraintRight_toRightOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="View and Add Known"
+                            android:textColor="#000"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toTopOf="@id/textview_menu_people" />
+
+                        <TextView
+                            android:id="@+id/textview_menu_people"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:text="People"
+                            android:textColor="#000"
+                            android:textSize="24sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            tools:layout_editor_absoluteX="10dp" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FFF"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:focusable="true"
+                android:onClick="goto_placesview">
+
+                <TextView
+                    android:id="@+id/textview_menu_places_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="30dp"
+                    android:text="View and Add Saved"
+                    android:textColor="#000"
+                    android:textSize="12sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:text="Places"
+                    android:textColor="#000"
+                    android:textSize="24sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textview_menu_places_sub" />
+
+                <ImageView
+                    android:layout_width="225.2dp"
+                    android:layout_height="90.4dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/mountain"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
+

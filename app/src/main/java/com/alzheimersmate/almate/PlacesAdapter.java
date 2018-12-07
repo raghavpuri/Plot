@@ -72,6 +72,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlacesView
         placeViewHolder.placenameText.setText(name);
         placeViewHolder.buttonNavig.setTag(latitude + " " + longitude);
         placeViewHolder.itemView.setTag(id);
+        placeViewHolder.itemView.setElevation(id+5);
     }
 
     @Override

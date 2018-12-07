@@ -38,7 +38,7 @@ public class PlacesAdd extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_places_add);
+        setContentView(R.layout.fragment_places_add);
         placesDBHelper dbHelper = new placesDBHelper(this);
         mDatabase = dbHelper.getWritableDatabase();
         addPlace = (Button) findViewById(R.id.add_place);
@@ -112,10 +112,12 @@ public class PlacesAdd extends AppCompatActivity
         else {
             Toast.makeText(PlacesAdd.this, "Place Saved!", Toast.LENGTH_LONG).show();
         }
+    }
 
-        mEditPlaceName.getText().clear();
-        Intent intent = new Intent(PlacesAdd.this, places_view.class);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+    public void goback_place_view(View view) {
+        Intent intent = new Intent(PlacesAdd.this,mainFragmentView.class);
+        intent.putExtra("FragmentOpen","place");
+        startActivity(intent);/*, ActivityOptions.makeSceneTransitionAnimation(this).toBundle()*/
     }
 
 }

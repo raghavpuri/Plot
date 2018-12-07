@@ -5,15 +5,20 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo_8"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_8"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -21,49 +26,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".MenuActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".medicine_view"
-            android:label="View your Medicines"
-            android:parentActivityName=".MenuActivity" />
-
-        <activity
-            android:name=".places_view"
-            android:label="View your Saved Places"
-            android:parentActivityName=".MenuActivity" />
-
-        <activity
-            android:name=".events_view"
-            android:label="View your Events"
-            android:parentActivityName=".MenuActivity" />
-
-        <activity
-            android:name=".people_view"
-            android:label="View your Saved Profiles"
-            android:parentActivityName=".MenuActivity" />
-
-        <activity
-            android:name=".alz_info"
-            android:label="Information Section"
-            android:parentActivityName=".MenuActivity" />
-
+            android:name=".mainFragmentView"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MedicinesAdd"
-            android:label="Add a Medicine"
-            android:parentActivityName=".medicine_view" />
-
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PlacesAdd"
-            android:label="Save Current Place"
-            android:parentActivityName=".places_view" />
-
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".trycamera" />
+        <activity android:name=".UserSettingLocationSetter" />
     </application>
 
 </manifest>
