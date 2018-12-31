@@ -2,6 +2,8 @@ package com.alzheimersmate.almate;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class mainFragmentView extends AppCompatActivity {
 
@@ -65,6 +68,22 @@ public class mainFragmentView extends AppCompatActivity {
     public void goto_placesadd(View view) {
         Intent intent = new Intent(this, PlacesAdd.class);
         startActivity(intent);/*, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle()*/
+    }
+
+    public void takemehomepls(View view) {
+        try{
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("ALMATEprefs", 0); // 0 - for private mode
+            String latitude, longitude;
+            latitude = pref.getString("userLat",null);
+            longitude = pref.getString("userLong",null);
+            Uri gmmIntentUri = Uri.parse("google.navigation:q="+ latitude + "," + longitude);
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            mainFragmentView.this.startActivity(mapIntent);
+        } catch (Exception e) {
+            Toast.makeText(mainFragmentView.this, "Please configure all User Settings!",Toast.LENGTH_LONG).show();
+        }
+
     }
 
 }

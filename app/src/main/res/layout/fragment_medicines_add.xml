@@ -209,7 +209,9 @@
             android:textSize="24sp"
             android:textColorHint="#FFF"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:inputType="text"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -222,6 +224,7 @@
 
     <android.support.design.button.MaterialButton
         android:id="@+id/med_ocr_btn"
+        android:onClick="clickPic"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:textAppearance="@style/Widget.MaterialComponents.Button"

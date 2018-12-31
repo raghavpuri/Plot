@@ -48,9 +48,9 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
         }
         String name = mCursor.getString(mCursor.getColumnIndex(MedicineContract.MedicineEntry.COLUMN_MED_NAME));
         String actualtime = mCursor.getString(mCursor.getColumnIndex(MedicineContract.MedicineEntry.COLUMN_TIME));
-        String time;
+        String time = actualtime;
         int hour_x = Integer.parseInt(actualtime.substring(0,2));
-        int minute_x = Integer.parseInt(actualtime.substring(2,4));
+        String minute_x = actualtime.substring(2,4);
         if(hour_x>12) {
             if(hour_x>21) {
                 time = "" + (hour_x-12) + ":" + minute_x + " PM";

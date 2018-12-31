@@ -53,9 +53,13 @@ public class MenuActivity extends Fragment {
         userDisplayPic = (ImageView) getActivity().findViewById(R.id.menuuserdisplaypic);
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("ALMATEprefs", 0); // 0 - for private mode
         SharedPreferences.Editor editor = pref.edit();
-        userNameWisher.setText("Hey " + pref.getString("userName",null) + "!");
-        String displaypicstring =  pref.getString("userDisplayPic", null);
+        try{
+            userNameWisher.setText("Hey " + pref.getString("userName",null) + "!");
+        } catch (Exception e) {
+            e.getMessage();
+        }
         try {
+            String displaypicstring =  pref.getString("userDisplayPic", null);
             byte [] encodeByte= Base64.decode(displaypicstring,Base64.DEFAULT);
             Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
             userDisplayPic.setImageBitmap(bitmap);

@@ -1,6 +1,7 @@
 package com.alzheimersmate.almate;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,14 +25,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.windowsazure.mobileservices.*;
+import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 
 import java.io.ByteArrayOutputStream;
+import java.net.MalformedURLException;
 
 public class MainActivity extends AppCompatActivity {
     public DrawerLayout mDrawerLayout;
     Button drawerButton;
+    private MobileServiceClient mClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +44,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main_Activity, new MenuActivity()).commit();
 
-        if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+        /*try {
+            mClient = new MobileServiceClient(
+                    "https://alm8.azurewebsites.net",
+                    this
+            );
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }*/
+
+        /*TodoItem item = new TodoItem();
+        item.Text = "Awesome item";
+        mClient.getTable(TodoItem.class).insert(item, new TableOperationCallback<item>() {
+            public void onCompleted(TodoItem entity, Exception exception, ServiceFilterResponse response) {
+                if (exception == null) {
+                    // Insert succeeded
+                } else {
+                    // Insert failed
+                }
+            }
+        });*/
+
+        AppCenter.start(getApplication(), "f22874de-e382-483a-9ec5-232193bd3ed3", Analytics.class);
+        Analytics.trackEvent("Main Activity Opened");
+
+        /*if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
-        }
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-        }
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 0);
-        }
+        }*/
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerButton = (Button) findViewById(R.id.drawer_button);
         drawerButton.setOnClickListener(
@@ -86,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+
     }
 
     public void goto_medicinesview(View view) {
@@ -178,4 +205,13 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    private static final String NOTIFICATION_MSG = "NOTIFICATION MSG";
+    // Create a Intent send by the notification
+    public static Intent makeNotificationIntent(Context context, String msg) {
+        Intent intent = new Intent( context, MainActivity.class );
+        intent.putExtra( NOTIFICATION_MSG, msg );
+        return intent;
+    }
+
 }

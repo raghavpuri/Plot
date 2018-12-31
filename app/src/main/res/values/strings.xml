@@ -1,12 +1,10 @@
 <resources>
-    <string name="app_name">ALMate</string>
-    <string name="almate_name">AL Mate</string>
+    <string name="app_name">ALM8</string>
+    <string name="almate_name">ALM8</string>
+
+    <string name="subscription_key">21550d858d694560bb95f476f6e2a16a</string>
+    <string name="subscription_apiroot">https://westus.api.cognitive.microsoft.com/vision/v1.0</string>
+
     <string name="almate_tagline">Your personal assistant\nfor Alzheimer\'s</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 </resources>
