@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/place_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.alzheimersmate.almate.PlacesAdd" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/place_back_btn"
+        style="@style/material_button"
+        android:layout_height="64dp"
+        android:layout_width="64dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="goback_place_view">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="100dp"
+            android:layout_weight="3">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:theme="@style/TextLabelPlace"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:boxStrokeWidth="5dp"
+                app:boxBackgroundColor="@color/colorBlueText">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editplacename"
+                    android:hint="Add Current Place Name"
+                    android:textColor="#FFF"
+                    android:textColorHint="#FFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:inputType="text"/>
+
+            </android.support.design.widget.TextInputLayout>
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.design.button.MaterialButton
+        android:id="@+id/place_ocr_btn"
+        android:onClick="clickPic"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:textAppearance="@style/Widget.MaterialComponents.Button"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="128dp"
+        android:text="OCR"
+        android:textSize="24sp"
+        app:cornerRadius="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <Button
+        android:id="@+id/add_place"
+        android:text="ADD"
+        style="@style/material_button"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

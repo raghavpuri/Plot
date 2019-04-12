@@ -1,6 +1,7 @@
 package com.alzheimersmate.almate;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -46,12 +47,32 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
             return;
         }
         String name = mCursor.getString(mCursor.getColumnIndex(MedicineContract.MedicineEntry.COLUMN_MED_NAME));
-        String time = mCursor.getString(mCursor.getColumnIndex(MedicineContract.MedicineEntry.COLUMN_TIME));
+        String actualtime = mCursor.getString(mCursor.getColumnIndex(MedicineContract.MedicineEntry.COLUMN_TIME));
+        String time = actualtime;
+        int hour_x = Integer.parseInt(actualtime.substring(0,2));
+        String minute_x = actualtime.substring(2,4);
+        if(hour_x>12) {
+            if(hour_x>21) {
+                time = "" + (hour_x-12) + ":" + minute_x + " PM";
+            }
+            else {
+                time = "0" + (hour_x-12) + ":" + minute_x + " PM";
+            }
+        }
+        else{
+            if(hour_x>9) {
+                time = "" + hour_x + ":" + minute_x + " AM";
+            }
+            else {
+                time = "0" + hour_x + ":" + minute_x + " AM";
+            }
+        }
         long id = mCursor.getLong(mCursor.getColumnIndex(MedicineContract.MedicineEntry.COLUMN_ID));
 
         medicineViewHolder.nameText.setText(name);
         medicineViewHolder.timeText.setText(time);
         medicineViewHolder.itemView.setTag(id);
+        medicineViewHolder.itemView.setElevation(id+5);
     }
 
     @Override

@@ -21,7 +21,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 MedicineEntry.TABLE_NAME + " (" +
                 MedicineEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 MedicineEntry.COLUMN_MED_NAME + " TEXT NOT NULL, " +
-                MedicineEntry.COLUMN_TIME + " TEXT NOT NULL" +
+                MedicineEntry.COLUMN_TIME + " TEXT NOT NULL, " +
+                MedicineEntry.COLUMN_DOCTOR + " INTEGER NOT NULL" +
                 ");";
 
         db.execSQL(SQL_CREATE_MEDICINELIST_TABLE);

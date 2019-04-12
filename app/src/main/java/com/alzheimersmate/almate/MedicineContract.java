@@ -11,5 +11,6 @@ public class MedicineContract   {
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_MED_NAME = "name";
         public static final String COLUMN_TIME = "time";
+        public static final String COLUMN_DOCTOR = "doctor";
     }
 }

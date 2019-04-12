@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:checked="true"
+            android:title="Home"
+            android:icon="@drawable/home_mat" />
+        <item
+            android:id="@+id/nav_user_set"
+            android:title="User Settings"
+            android:icon="@drawable/settings_mat"/>
+        <!--<item
+            android:id="@+id/nav_doc_set"
+            android:title="Doctor Settings"
+            android:icon="@drawable/doctor_mat"/>-->
+        <!--<item
+            android:id="@+id/nav_sos_set"
+            android:title="SOS Settings"
+            android:icon="@drawable/emergency_mat"/>-->
+        <item
+            android:id="@+id/nav_info_alz"
+            android:title="Alzheimer's Info"
+            android:icon="@drawable/books_mat"/>
+        <item
+            android:id="@+id/nav_about"
+            android:title="About Us"
+            android:icon="@drawable/info_mat"/>
+    </group>
+
+</menu>

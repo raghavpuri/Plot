@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:clipToPadding="false">
+
+            <ImageView
+                android:id="@+id/usersettingspicdisplay"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/anuragpicture"
+                android:background="@drawable/user_img_set"
+                android:elevation="10dp"/>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/changeuserpic"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="Choose A Different Picture"
+                android:textAppearance="@style/Widget.MaterialComponents.Button"
+                android:textSize="20sp"
+                app:cornerRadius="10dp"
+                android:onClick="pickPic"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="0"
+                android:background="#FFF"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="What should I call you?"
+                    android:textColor="#000"
+                    android:textSize="24sp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/username_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="5dp"
+                    app:boxBackgroundColor="#FFF"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxStrokeWidth="5dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Your Firstname"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="#FFF"
+                        android:textSize="16sp" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="0"
+                android:background="#FFF"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Email Address:"
+                    android:textColor="#000"
+                    android:textSize="24sp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/useremail_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="5dp"
+                    app:boxBackgroundColor="#FFF"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxStrokeWidth="5dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/useremail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Your Email"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="#FFF"
+                        android:textSize="16sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="0"
+                android:background="#FFF"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Phone Number:"
+                    android:textColor="#000"
+                    android:textSize="24sp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/usernumber_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="5dp"
+                    app:boxBackgroundColor="#FFF"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxStrokeWidth="5dp">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/usernumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Your Phone Number"
+                        android:textColor="@color/colorAccent"
+                        android:textColorHint="#FFF"
+                        android:textSize="16sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="#FFF"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="HOME:"
+                    android:textColor="#000"
+                    android:textSize="24sp" />
+
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/usersethome"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Set Current Location\nas Home"
+                    android:textAppearance="@style/Widget.MaterialComponents.Button"
+                    android:textSize="24sp"
+                    app:cornerRadius="10dp"
+                    android:onClick="saveUserLocation"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/save_user_setting_btn"
+        style="@style/material_button"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="saveUserSettings">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_check_black_24dp"
+            android:tint="#FFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

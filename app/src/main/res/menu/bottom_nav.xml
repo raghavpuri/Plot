@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_bottom_home"
+            android:checkable="true"
+            android:icon="@drawable/home_white"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_bottom_med"
+            android:checkable="true"
+            android:icon="@drawable/med_white"
+            android:title="Medicines" />
+        <item
+            android:id="@+id/nav_bottom_place"
+            android:checkable="true"
+            android:icon="@drawable/place_white"
+            android:title="Places" />
+        <!--<item
+            android:id="@+id/nav_bottom_people"
+            android:checkable="true"
+            android:icon="@drawable/people_white"
+            android:title="People" />-->
+    </group>
+</menu>

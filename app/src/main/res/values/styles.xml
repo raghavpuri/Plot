@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -10,6 +10,8 @@
         <item name="android:windowReturnTransition">@android:transition/slide_right</item>
         <item name="android:windowEnterTransition">@android:transition/slide_right</item>
         <item name="android:windowExitTransition">@android:transition/slide_left</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:fontFamily">@font/product_sans_regular</item>
     </style>
 
     <style name="menu_buttons">
@@ -22,12 +24,30 @@
     </style>
 
     <style name="material_button">
-        <item name="android:layout_height">64dp</item>
-        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">76dp</item>
+        <item name="android:layout_width">76dp</item>
         <item name="android:layout_margin">24dp</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:background">@drawable/add_button</item>
+        <item name="android:elevation">10dp</item>
+    </style>
+
+    <style name="TextLabelPlace" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:textColorHint">#FFF</item>
+        <item name="colorAccent">#FFF</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:labelTextSize">20sp</item>
+        <!--<item name="colorControlNormal">@color/Color Name</item>
+        <item name="colorControlActivated">@color/Color Name</item>-->
+    </style>
+
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/bg_spinner</item>
+    </style>
+    
+    <style name="maindrawer">
+        <item name="android:textSize">20sp</item>
     </style>
 
 
