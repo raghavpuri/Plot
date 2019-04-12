@@ -160,7 +160,8 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="invisible">
 
             <TextView
                 android:layout_width="0dp"

@@ -30,10 +30,10 @@ public class mainFragmentView extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main, new FragmentPlacesView()).commit();
                 bottomnav.getMenu().findItem(R.id.nav_bottom_place).setChecked(true);
                 break;
-            case "people":
+            /*case "people":
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main, new FragmentPeopleView()).commit();
                 bottomnav.getMenu().findItem(R.id.nav_bottom_people).setChecked(true);
-                break;
+                break;*/
         }
     }
 
@@ -48,9 +48,9 @@ public class mainFragmentView extends AppCompatActivity {
                         case R.id.nav_bottom_place:
                             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main, new FragmentPlacesView()).commit();
                             break;
-                        case R.id.nav_bottom_people:
-                            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main, new FragmentPeopleView()).commit();
-                            break;
+                        //case R.id.nav_bottom_people:
+                            //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main, new FragmentPeopleView()).commit();
+                            //break;
                         case R.id.nav_bottom_home:
                             Intent intent = new Intent(mainFragmentView.this, MainActivity.class);
                             startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(mainFragmentView.this).toBundle());

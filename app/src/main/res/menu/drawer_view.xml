@@ -11,14 +11,14 @@
             android:id="@+id/nav_user_set"
             android:title="User Settings"
             android:icon="@drawable/settings_mat"/>
-        <item
+        <!--<item
             android:id="@+id/nav_doc_set"
             android:title="Doctor Settings"
-            android:icon="@drawable/doctor_mat"/>
-        <item
+            android:icon="@drawable/doctor_mat"/>-->
+        <!--<item
             android:id="@+id/nav_sos_set"
             android:title="SOS Settings"
-            android:icon="@drawable/emergency_mat"/>
+            android:icon="@drawable/emergency_mat"/>-->
         <item
             android:id="@+id/nav_info_alz"
             android:title="Alzheimer's Info"

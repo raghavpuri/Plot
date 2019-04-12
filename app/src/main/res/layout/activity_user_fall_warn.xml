@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserFallWarn"
+    android:background="@drawable/bg_gradient">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:clipToPadding="false"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_marginTop="-50dp"
+                android:layout_height="300dp"
+                android:src="@drawable/sosdrop"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:elevation="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="callemergencyview"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I have detected a Fall.\nClick the button if you're injured or need help.\nWe'll contact S O S if there is no activity for 3 minutes."
+                android:layout_marginTop="50dp"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:background="#FFF"
+                android:textColor="#BB0000"
+                android:elevation="5dp"
+                android:padding="5dp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imagecancelemer"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_margin="24dp"
+            android:src="@drawable/assetredcross"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:onClick="cancelemergencyview"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stop this prompt"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/imagecancelemer"
+            android:layout_marginBottom="47dp"
+            android:layout_marginRight="15dp"
+            android:textColor="#FFF"/>
+
+
+</android.support.constraint.ConstraintLayout>

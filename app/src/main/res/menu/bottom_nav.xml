@@ -16,10 +16,10 @@
             android:checkable="true"
             android:icon="@drawable/place_white"
             android:title="Places" />
-        <item
+        <!--<item
             android:id="@+id/nav_bottom_people"
             android:checkable="true"
             android:icon="@drawable/people_white"
-            android:title="People" />
+            android:title="People" />-->
     </group>
 </menu>

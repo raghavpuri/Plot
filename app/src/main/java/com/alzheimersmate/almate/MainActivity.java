@@ -1,12 +1,17 @@
 package com.alzheimersmate.almate;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -33,10 +38,20 @@ import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import java.io.ByteArrayOutputStream;
 import java.net.MalformedURLException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
     public DrawerLayout mDrawerLayout;
     Button drawerButton;
     private MobileServiceClient mClient;
+    private SensorManager sensorMan;
+    private Sensor accelerometer;
+
+    private float[] mGravity;
+    private double mAccel;
+    private double mAccelCurrent;
+    private double mAccelLast;
+    private double threshold_acc = 25;
+    long prevAcTime = 0;
+    long prevReTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +83,12 @@ public class MainActivity extends AppCompatActivity {
         AppCenter.start(getApplication(), "f22874de-e382-483a-9ec5-232193bd3ed3", Analytics.class);
         Analytics.trackEvent("Main Activity Opened");
 
-        /*if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)) {
+        if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 0);
-        }*/
+        }
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerButton = (Button) findViewById(R.id.drawer_button);
         drawerButton.setOnClickListener(
@@ -99,10 +114,32 @@ public class MainActivity extends AppCompatActivity {
                                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main_Activity, new UserSettingsFragment()).commit();
                                 break;
                             case R.id.nav_about:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main_Activity, new AboutUsFragment()).commit();
+                                //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main_Activity, new AboutUsFragment()).commit();
+                                String urlString2 = "http://amity.edu/ais/gurgaon46/";
+                                Intent intent2 = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString2));
+                                intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent2.setPackage("com.android.chrome");
+                                try {
+                                    MainActivity.this.startActivity(intent2);
+                                } catch (ActivityNotFoundException ex) {
+                                    // Chrome browser presumably not installed so allow user to choose instead
+                                    intent2.setPackage(null);
+                                    MainActivity.this.startActivity(intent2);
+                                }
                                 break;
                             case R.id.nav_info_alz:
-                                getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main_Activity, new AboutAlzFragment()).commit();
+                                //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main_Activity, new AboutAlzFragment()).commit();
+                                String urlString = "https://www.alz.org";
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.setPackage("com.android.chrome");
+                                try {
+                                    MainActivity.this.startActivity(intent);
+                                } catch (ActivityNotFoundException ex) {
+                                    // Chrome browser presumably not installed so allow user to choose instead
+                                    intent.setPackage(null);
+                                    MainActivity.this.startActivity(intent);
+                                }
                                 break;
                             default:
                                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main_Activity, new MenuActivity()).commit();
@@ -113,6 +150,98 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
+        sensorMan = (SensorManager)getSystemService(SENSOR_SERVICE);
+        accelerometer = sensorMan.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mAccel = 0.00f;
+        mAccelCurrent = SensorManager.GRAVITY_EARTH;
+        mAccelLast = SensorManager.GRAVITY_EARTH;
+
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sensorMan.registerListener(this, accelerometer,
+                SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorMan.unregisterListener(this);
+    }
+
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+            mGravity = event.values.clone();
+            // Shake detection
+            double x = mGravity[0];
+            double y = mGravity[1];
+            double z = mGravity[2];
+
+            /*if(x>xm) {
+                xm = x;
+                xmo.setText(String.valueOf(xm));
+            }
+            if(y>ym) {
+                ym =y;
+                ymo.setText(String.valueOf(ym));
+            }
+            if(z>zm) {
+                zm = z;
+                zmo.setText(String.valueOf(zm));
+            }
+
+            xac.setText(String.valueOf(x));
+            yac.setText(String.valueOf(y));
+            zac.setText(String.valueOf(z));*/
+
+            mAccelLast = mAccelCurrent;
+            mAccelCurrent = Math.sqrt(x * x + y * y + z * z);;
+            double delta = mAccelCurrent - mAccelLast;
+            mAccel = mAccel * 0.9f + delta;
+            // Make this higher or lower according to how much
+            // motion you want to detect
+
+
+            //Change to mAccel for total acceleration
+
+
+            /*if(z > threshold_acceleration) {
+                if (System.currentTimeMillis() - prevAcTime < 5000) {
+                    return;
+                }
+
+                prevAcTime = System.currentTimeMillis();
+
+                Intent intent = new Intent(MainActivity.this, UserAccelerationWarn.class);
+                intent.putExtra("acc", String.format("%.2f", z/10));
+                startActivity(intent);
+
+            }*/
+
+            if(Math.abs(z) > threshold_acc) {
+                if (System.currentTimeMillis() - prevReTime < 5000) {
+                    return;
+                }
+
+                prevReTime = System.currentTimeMillis();
+
+                Intent intent = new Intent(MainActivity.this, UserFallWarn.class);
+                startActivity(intent);
+            }
+
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // required method
     }
 
     public void goto_medicinesview(View view) {
@@ -130,9 +259,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goto_peopleview(View view) {
-        Intent intent = new Intent(MainActivity.this, mainFragmentView.class);
+        /*Intent intent = new Intent(MainActivity.this, mainFragmentView.class);
         intent.putExtra("FragmentOpen", "people");
-        startActivity(intent);
+        startActivity(intent);*/
+        String urlString = "https://azure.microsoft.com/en-in/services/cognitive-services/face/";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setPackage("com.android.chrome");
+        try {
+            MainActivity.this.startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            // Chrome browser presumably not installed so allow user to choose instead
+            intent.setPackage(null);
+            MainActivity.this.startActivity(intent);
+        }
+
     }
 
     public void saveUserLocation(View view) {

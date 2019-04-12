@@ -80,7 +80,7 @@ public class MedicinesAdd extends AppCompatActivity implements AdapterView.OnIte
         });
         dropdown = findViewById(R.id.med_spinner);
         docdown = findViewById(R.id.doc_spinner);
-        items = new String[]{"Med1", "Med2", "Med3", "Other"};
+        items = new String[]{"Donepezil", "Rivastigmine", "Galantamine", "Other"};
         docs = new String[]{"Doc1", "Doc2", "Doc3", "Doc4"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MedicinesAdd.this, R.layout.med_spinner_item, items);
         ArrayAdapter<String> docadapter = new ArrayAdapter<>(MedicinesAdd.this, R.layout.med_spinner_item, docs);
@@ -338,7 +338,7 @@ public class MedicinesAdd extends AppCompatActivity implements AdapterView.OnIte
         ContentValues cv = new ContentValues();
         cv.put(MedicineContract.MedicineEntry.COLUMN_MED_NAME, name);
         cv.put(MedicineContract.MedicineEntry.COLUMN_TIME, actualtime);
-        cv.put(MedicineContract.MedicineEntry.COLUMN_DOCTOR,docID);
+        //cv.put(MedicineContract.MedicineEntry.COLUMN_DOCTOR,docID);
 
         long result = mDatabase.insert(MedicineContract.MedicineEntry.TABLE_NAME, null, cv);
         if(result == -1) {

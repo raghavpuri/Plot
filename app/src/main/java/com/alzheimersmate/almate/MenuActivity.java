@@ -79,7 +79,7 @@ public class MenuActivity extends Fragment {
         long mednum = DatabaseUtils.queryNumEntries(mDatabase, MedicineContract.MedicineEntry.TABLE_NAME);
 
         int i=0;
-        while(true) {
+        /*while(true) {
             try {
                 int disttime1, disttime2;
                 if(!medtop2.moveToPosition(i)) {
@@ -124,7 +124,7 @@ public class MenuActivity extends Fragment {
                 int currtime = Integer.parseInt(localTime);
                 int tabletime = Integer.parseInt(medtop2.getString(medtop2.getColumnIndex(MedicineContract.MedicineEntry.COLUMN_TIME)));
                 /*((TextView) findViewById(R.id.menu_med_1_med_name)).setText(String.valueOf(tabletime));*/
-                if(tabletime>currtime) {
+        /*if(tabletime>currtime) {
                     if(i!=mednum-1){
                         ((TextView) getView().findViewById(R.id.menu_med_1_med_name)).setText(medtop2.getString(medtop2.getColumnIndex(MedicineContract.MedicineEntry.COLUMN_MED_NAME)));
                         disttime1 = (tabletime-currtime)/100;
@@ -156,6 +156,6 @@ public class MenuActivity extends Fragment {
                 ((TextView) getView().findViewById(R.id.menu_med_1_med_name)).setText("Set atleast 1 medicine");
                 ((TextView) getView().findViewById(R.id.menu_med_2_med_name)).setText("Set atleast 1 medicines");
             }
-        }
+        }*/
     }
 }
